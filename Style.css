@@ -1,0 +1,61 @@
+*{
+    background-color: rgb(51, 51, 51);
+    
+}
+
+.title{
+    padding-top:1%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    font-weight: 900;
+    color:whitesmoke;
+}
+
+.SearchBar{
+    padding-top: 2%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.SearchBar #Search{
+    background-color: bisque;
+    text-align: center;
+    font-size: large;
+    height: 30px;
+    width: 500px;
+}
+
+.Import_Export{
+    padding-top: 5%;
+    display:flex;
+    justify-content: center;
+    align-items: center;    
+    gap:20%;   
+    padding-bottom: 5%;
+}
+
+.Import_Export #Export,#Import{
+    background-color: bisque;
+    transform: scale(1.5);
+}
+
+.Library{
+    position: relative;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-clip: content-box;
+    background-color: rgb(143, 142, 142);
+    max-height: 555px;
+    min-height: 555px;
+    overflow-y: auto;
+
+}
+.Library p{
+    background-color: rgb(143, 142, 142);
+    padding-left: 1%;
+}
