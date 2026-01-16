@@ -1,9 +1,9 @@
 async function SearchQueries(){
     text = document.getElementById("Search").value; //get the value of the search bar
     data = await ApiGamefetch(text); //wait for the Apifetch function
-    imgurl = await ApiCoverfetch(data[0].cover);
+    //imgurl = await ApiCoverfetch(data[0].cover);
     document.getElementById("TestOutput").textContent = data[0].cover; //set the testoutput to the JSON but cast it first
-    document.getElementById("TestImage").src = imgurl[0].url;
+    //document.getElementById("TestImage").src = imgurl[0].url;
 }
 
 //an asyncronous function of Apifetch, fetches results based on what is inputted into the seach bar
