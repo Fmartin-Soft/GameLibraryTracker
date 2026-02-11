@@ -1,9 +1,8 @@
 async function SearchQueries(){
     text = document.getElementById("Search").value; //get the value of the search bar
-    data = await ApiGamefetch(`fields name,rating,rating_count,platforms,cover,url; search "${text}"; limit 1;`); //searching for the game plus details
-    imgurl = await ApiGamefetch(`fields cover.url; where id=${data[0].id};`); //searching for the url cover
-    document.getElementById("TestOutput").textContent = data[0].name; //set the testoutput to the JSON but cast it first
-    document.getElementById("TestImage").src = "https:" + imgurl[0].cover.url.replace("t_thumb","t_cover_big");
+    textData = await ApiGamefetch(`fields name,rating,rating_count,platforms,cover,url; search "${text}"; limit 1;`); //searching for the game plus details
+    imgurl = await ApiGamefetch(`fields cover.url; where id=${textData[0].id};`); //searching for the url cover
+    await addSingleElement(textData[0].name,"https:" + imgurl[0].cover.url.replace("t_thumb","t_cover_big"));
 }
 
 //an asyncronous function of Apifetch, fetches results based on what is inputted into the seach bar
@@ -16,7 +15,7 @@ async function ApiGamefetch(body){
         //include these headers
         headers: {
             'Accept':'application/json',
-            'Client-ID': 'CID', //MY client ID
+            'Client-ID': 'ClientID', //MY client ID
             'Authorization': 'Bearer ID', // MY secret ID, hopefully this isnt here
         },
 
@@ -35,3 +34,22 @@ document.getElementById("Search").addEventListener("keypress",function(event){
         SearchQueries();
     }
 });
+
+//To dynamically add Divs
+function addSingleElement(Text,ImgURL){
+    const div = document.createElement("div");
+    
+    div.className = "SingleEntry";
+
+    div.innerHTML = `
+    <img src=${ImgURL}>
+    <p>${Text}</p> 
+    `
+
+    document.getElementById("Library").appendChild(div);
+
+    const line = document.createElement("hr");
+    document.getElementById("Library").appendChild(line);
+
+
+}

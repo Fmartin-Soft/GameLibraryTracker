@@ -1,6 +1,5 @@
-*{
+body{
     background-color: rgb(51, 51, 51);
-    
 }
 
 .title{
@@ -13,6 +12,7 @@
     font-size: x-large;
     font-weight: 900;
     color:whitesmoke;
+    background-color: rgb(51, 51, 51);
 }
 
 .SearchBar{
@@ -20,6 +20,7 @@
     display:flex;
     justify-content: center;
     align-items: center;
+    background-color: rgb(51, 51, 51);
 }
 
 .SearchBar #Search{
@@ -28,6 +29,7 @@
     font-size: large;
     height: 30px;
     width: 500px;
+    
 }
 
 .Import_Export{
@@ -37,6 +39,7 @@
     align-items: center;    
     gap:20%;   
     padding-bottom: 5%;
+    background-color: rgb(51, 51, 51);
 }
 
 .Import_Export #Export,#Import{
@@ -44,7 +47,7 @@
     transform: scale(1.5);
 }
 
-.Library{
+#Library{
     position: relative;
     padding-left: 5%;
     padding-right: 5%;
@@ -55,7 +58,28 @@
     overflow-y: auto;
 
 }
-.Library p{
+#Library p{
     background-color: rgb(143, 142, 142);
-    padding-left: 1%;
 }
+
+#Libary *{
+    background-color: rgb(143, 142, 142);
+}
+
+#Library hr{
+    width: 96%;
+    border-width: 2px;
+}
+
+.SingleEntry{
+    display:flex;
+    justify-content: left;
+    background-color: rgb(143, 142, 142);
+}
+
+.SingleEntry p,img{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display:inline;
+    padding:20px; 
+}
+
