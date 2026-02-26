@@ -101,6 +101,7 @@ body{
 .SingleEntry button{
     align-self: flex-start;
     position: absolute;
+    background-color: red;
     top: 10px;
     right: 10px;
 }
