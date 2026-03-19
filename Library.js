@@ -4,22 +4,68 @@ function onStart(){
 }
 
 function loadLocal(){
+    x=0;
     //check how many entries there are
-    //for each entry, 
-        //load and create boxartURL
-        //load name
-        //load platforms
-        //send into addSingleElement()
+        //for each entry, 
+            //load and create boxartURL
+            //load name
+            //load platforms
+            //send into addSingleElement()
+    AllEntrys = localStorage.getItem("Entry").split("¦");
+    Entrys = [];
+    for(let i=0; i<AllEntrys.length; i++){
+        Entrys.push(AllEntrys[i].split("¬"));
+        // for(let x=0; x<AllEntrys[i].length;x++){
+        //     console.log(AllEntrys[i],x);
+        //     if(AllEntrys[i] == "#" && x == 0){
+        //         console.log("HERE");
+        //         Entrys.push("[");
+        //         x=1;
+        //     }else if(AllEntrys[i] == "#" && x == 1){
+        //         Entrys.push("]");
+        //         x=0;
+        //     }
+        // }
+
+    }
+
 }
 
-function createLocalEntry(URL,name,platforms){
-    //unpack URL (grab the ending string)
-    //check if localStorage exists
-        //if TRUE unpack current localStorage
-        //add new entry on end current (¦URL,name,platforms¦)
+function checkExists(){
+        if (localStorage.getItem("Entry") == undefined){
+        console.log("No Entry.. Creating a new one");
+        localStorage.setItem("Entry","¦");
+    }
+}
 
-        //if FALSE create new storage key
-        //add new entry (¦URL,name,platforms¦)
+
+
+function createLocalEntry(URL,name,platforms){
+    //check if localStorage exists
+    checkExists();
+
+    // creating a new entry "Package"
+    newEntry = [URL.substring(54),"¬",name,"¬","#",[],"#","¦"];
+    for(let i = 0; i < platforms.length; i++){
+    
+        if(newEntry[5].length == 0){ //if the platform array is empty
+            newEntry[5].push(platforms[i].name); 
+        }else{
+            newEntry[5].push("¬",platforms[i].name); 
+        }
+        
+    }   
+
+    oldEntry = localStorage.getItem("Entry");
+
+    oldEntry += newEntry;
+
+    localStorage.setItem("Entry",oldEntry);
+
+    //re-enter storage
+    //localStorage.setItem("Entry",tempLocal);
+    //add new entry on end current (URL,name,platforms¦)
+
 
 
 }
@@ -34,7 +80,7 @@ async function SearchQueries(){
     platformUrl = await IgdbApiFetch(`fields platform_logo.url,name; where id=(${textData[0].platforms.join(",")});`,platformQuery)
     await addSingleElement(textData[0].name,platformUrl,"https:" + imgurl[0].cover.url.replace("t_thumb","t_cover_big"));
     
-    //createlocalEntry()
+    await createLocalEntry("https:" + imgurl[0].cover.url.replace("t_thumb","t_cover_big"), textData[0].name, platformUrl);
 }
 
 //an asyncronous function of Apifetch, fetches results based on what is inputted into the seach bar
